@@ -20,6 +20,16 @@ const routes: Routes = [
       import('./doctors/doctors.module').then((m) => m.DoctorsModule),
   },
   {
+    path: 'medication',
+    loadChildren: () =>
+      import('./medication/medication.module').then((m) => m.MedicationModule),
+  },
+  {
+    path: 'ingredient',
+    loadChildren: () =>
+      import('./ingredient/ingredient.module').then((m) => m.IngredientModule),
+  },
+  {
     path: 'staff',
     loadChildren: () =>
       import('./staff/staff.module').then((m) => m.StaffModule),
