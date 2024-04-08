@@ -20,6 +20,11 @@ const routes: Routes = [
       import('./doctors/doctors.module').then((m) => m.DoctorsModule),
   },
   {
+    path: 'ICD10',
+    loadChildren: () =>
+      import('./ICD10/ICD10.module').then((m) => m.ICD10Module),
+  },
+  {
     path: 'staff',
     loadChildren: () =>
       import('./staff/staff.module').then((m) => m.StaffModule),

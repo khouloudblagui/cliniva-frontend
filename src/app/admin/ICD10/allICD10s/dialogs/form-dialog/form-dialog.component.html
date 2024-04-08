@@ -1,0 +1,92 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+      
+        <div class="modal-about">
+          {{dialogTitle}}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="ICD10sForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Code</mat-label>
+            <input matInput formControlName="code" #codeInput (keyup)="updateChapter(codeInput.value);updateBlock(codeInput.value);updateCategory(codeInput.value);updateSubcategory(codeInput.value);updateExtension(codeInput.value)" required>
+           
+            <mat-error *ngIf="ICD10sForm.get('code')?.hasError('required')">
+              Code is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>chapter</mat-label>
+            <p class="mat-label">   {{chapterValue}} </p>
+                      <input matInput formControlName="chapter" [disabled]="true" >
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>block</mat-label>
+            <p class="mat-label">{{ BlockValue }} </p>
+            <input matInput formControlName="block" [disabled]="true" >
+          </mat-form-field>
+        </div><div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>category</mat-label>
+            <p class="mat-label"> {{CategoryValue}} </p>
+            <input matInput formControlName="category" [disabled]="true" >
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>subcategory</mat-label>
+            <p class="mat-label">   {{SubcategoryValue}} </p>
+                    <input matInput formControlName="subcategory" [disabled]="true" >
+          </mat-form-field>
+        </div>
+      </div> 
+       <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Extension</mat-label>
+            <p class="mat-label"> {{ ExtensionValue }} </p>
+            <input matInput formControlName="extension" [disabled]="true">
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Notes</mat-label>
+          <textarea matInput formControlName="notes"></textarea>
+        </mat-form-field>
+      </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>description</mat-label>
+            <textarea matInput formControlName="description" required></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="!ICD10sForm.valid" [mat-dialog-close]="1"
+              (click)="confirmAdd()">Save</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
