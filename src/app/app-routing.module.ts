@@ -30,6 +30,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./doctor/doctor.module').then((m) => m.DoctorModule),
       },
+      
       {
         path: 'patient',
         canActivate: [AuthGuard],
@@ -39,6 +40,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./patient/patient.module').then((m) => m.PatientModule),
       },
+    
       {
         path: 'calendar',
         loadChildren: () =>
