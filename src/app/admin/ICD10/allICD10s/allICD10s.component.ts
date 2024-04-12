@@ -100,21 +100,6 @@ export class AllICD10sComponent
   };
   
   icd10List: ICD10[] = [];
-/*
-  getAllICD10(): void {
-    this.ICD10sService.getAllICD10().subscribe(
-      (data: ICD10[]) => {
-        console.log('Données récupérées depuis le service ICD10sService :', data); // Ajout du log
-        this.dataSource = data;
-      },
-      (error: any) => {
-        this.snackBar.open('Erreur lors du chargement des icd10', 'OK', {
-          duration: 2000,
-        });
-      }
-    );
-  }*/
-  
 
 
 
@@ -155,43 +140,6 @@ export class AllICD10sComponent
   }
 
   
-
-
-
-
- /* getAllICD10(): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8088/icd10/all')
-      .pipe(
-        catchError(error => {
-          return throwError(this.handleError(error));
-        })
-      );
-  }
-
-  private handleError(error: HttpErrorResponse): string {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Erreur côté client
-      errorMessage = `Une erreur s'est produite : ${error.error.message}`;
-    } else {
-      // Erreur côté serveur
-      errorMessage = `Code d'erreur : ${error.status}, message : ${error.message}`;
-    }
-    return errorMessage;
-  }
-/*
-
-  getAllICD10(): void {
-    this.ICD10sService.getAllICD10()
-      .subscribe(data => {
-        this.icd10List = data;
-      });
-  }
-*/
-
-
-
-
   addNew() {
     let tempDirection: Direction;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -388,39 +336,7 @@ search(filterValue: string): void {
 }
 
 
- /*public loadData() {
-    this.exampleDatabase = new ICD10Service(this.httpClient);
-    this.dataSource = new ExampleDataSource(
-      this.exampleDatabase,
-      this.paginator,
-      this.sort
-    );
-    this.subs.sink = fromEvent(this.filter?.nativeElement, 'keyup').subscribe(
-      () => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter?.nativeElement.value;
-      }
-    );
-  }*/
-  // export table data in excel file
- /* exportExcel() {
-    // key name with space add in brackets
-    const exportData: Partial<TableElement>[] =
-      this.dataSource.filteredData.map((x) => ({
-        Code: x.ICD10Code,
-        subcategory: x.ICD10Subcategory,
-        description: x.ICD10Description,
-        'Joining Date': formatDate(new Date(x.ICD10Extension), 'yyyy-MM-dd', 'en') || '',
-        Chapter: x.ICD10Chapter,
-        Block: x.ICD10Block,
-        Category: x.ICD10Category,
-      }));
 
-    TableExportUtil.exportToExcel(exportData, 'excel');
-  }
-*/
   showNotification(
     colorName: string,
     text: string,

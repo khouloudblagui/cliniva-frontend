@@ -24,32 +24,3 @@ export class ICD10 {
 
 
  
-/* id: number;
-  img: string;
-  name: string;
-  email: string;
-  date: string;
-  specialization: string;
-  mobile: string;
-  department: string;
-  degree: string;
-  constructor(ICD10: ICD10) {
-    {
-      this.id = ICD10.id || this.getRandomID();
-      this.img = ICD10.img || 'assets/images/user/user1.jpg';
-      this.name = ICD10.name || '';
-      this.email = ICD10.email || '';
-      this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.specialization = ICD10.specialization || '';
-      this.mobile = ICD10.mobile || '';
-      this.department = ICD10.department || '';
-      this.degree = ICD10.degree || '';
-    }
-  }
-  public getRandomID(): number {
-    const S4 = () => {
-      return ((1 + Math.random()) * 0x10000) | 0;
-    };
-    return S4() + S4();
-  }*/
-

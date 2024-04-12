@@ -26,60 +26,7 @@ export class ICD10Service  {
   }
   getAllICD10(): Observable<ICD10[]> {
     return this.http.get<ICD10[]>(this.API_URL);}
-    /*.pipe
-   (
-      catchError(this.handleError)
-    );
-  }
   
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'Une erreur est survenue';
-    if (error.error instanceof ErrorEvent) {
-      // Erreur côté client
-      errorMessage = `Erreur : ${error.error.message}`;
-    } else {
-      // Erreur côté serveur
-      if (error.status !== undefined && error.message !== undefined) {
-        errorMessage = `Code d'erreur : ${error.status}, message : ${error.message}`;
-      } else {
-        errorMessage = `Une erreur inattendue est survenue`;
-      }
-    }
-    console.error(errorMessage); // Journaliser l'erreur dans la console
-    return throwError(errorMessage);
-  }
-  */
-  /*private readonly API_URL = 'http://localhost:8090';
-  readonly EndPointICD10 ="/icd10/all"
-  isTblLoading = true;
-  dataChange: BehaviorSubject<ICD10[]> = new BehaviorSubject<ICD10[]>([]);
-  // Temporarily stores data from dialogs
-  dialogData!: ICD10;
-  constructor(private httpClient: HttpClient) {
-    super();
-  }
-  get data(): ICD10[] {
-    return this.dataChange.value;
-  }
-  getDialogData() {
-    return this.dialogData;
-  }
-  getAllIcd10ss():Observable<ICD10[]> {
-    return this.httpClient.get<ICD10[]>(this.API_URL+this.EndPointICD10)
-  }*/
-  /** CRUD METHODS */
- /* getAllICD10ss(): void {
-    this.subs.sink = this.httpClient.get<ICD10[]>(this.API_URL).subscribe({
-      next: (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      },
-    });
-  }*/
   addICD10s(iCode: string, iDescription: string, iNotes: string): void {
     // Validation des paramètres
     if (!iCode || !iDescription || !iNotes) {
@@ -116,18 +63,6 @@ removeICD10(icd10code: string): Observable<void> {
 
 
 
-    // this.httpClient.post(this.API_URL, ICD10s)
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.dialogData = ICD10s;
-    //     },
-    //     error: (error: HttpErrorResponse) => {
-    //        // error code here
-    //     },
-    //   });
-  
- 
-
 
 
 
@@ -154,31 +89,13 @@ removeICD10(icd10code: string): Observable<void> {
           }
       });
   }
-  
-    // this.httpClient.put(this.API_URL + ICD10s.id, ICD10s)
-    //     .subscribe({
-    //       next: (data) => {
-    //         this.dialogData = ICD10s;
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
+
  
   deleteICD10(icode: string): Observable<void>  {
     return this.http.delete<void>(`${this.API_URL}/delete/${icode}`);
     console.log(icode);
    }
-    // this.httpClient.delete(this.API_URL + id)
-    //     .subscribe({
-    //       next: (data) => {
-    //         console.log(id);
-    //       },
-    //       error: (error: HttpErrorResponse) => {
-    //          // error code here
-    //       },
-    //     });
-  
+
     checkIfIcd10Exists(icd10Code: string): Observable<boolean> {
       return this.http.get<boolean>(`${this.API_URL}/exists?icd10Code=${icd10Code}`);
     }

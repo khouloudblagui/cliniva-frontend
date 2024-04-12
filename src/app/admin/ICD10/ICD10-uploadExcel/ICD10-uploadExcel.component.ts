@@ -13,10 +13,7 @@ export class ICD10uploadExcelComponent {
 selectedFile: File | null = null; // Variable pour stocker le fichier sélectionné
 
   constructor(private icd10service: ICD10Service) {
-    // constructor code
-   /* this.uploadForm =this.fb.group({ uploadFile: ['', [this.fileSelectedValidator]]}
-      ,
-    )*/
+   
   }
   
   onFileSelected(event: any) {
