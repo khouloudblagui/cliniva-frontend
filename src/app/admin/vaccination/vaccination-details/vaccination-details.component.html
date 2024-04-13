@@ -1,0 +1,116 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb [title]="'Vaccination List'" [items]="['Vaccination details']" [active_item]="'View details'">
+        </app-breadcrumb>
+      </div>
+      
+      <div class="row clearfix">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+            <div class="materialTableHeader">
+              <div class="left">
+                <ul class="header-buttons-left ms-0">
+                  <li class="tbl-title">
+                    <h2>Vaccination details</h2>
+                  </li>
+                </ul>
+              </div>
+              <div class="right">
+                <ul class="tbl-export-btn">
+                  <li class="tbl-header-btn">
+                    <div class="m-l-10" matTooltip="UPDATE">
+                      <button mat-mini-fab color="primary" (click)="openUpdateModal()">
+                        <mat-icon class="col-white">update</mat-icon>
+                      </button>
+                    </div>
+                </ul>
+              </div>
+            </div>
+            <div class="body">
+              <div>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <h6>Vaccination Name</h6>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput [value]="vaccination.vaccineLabel" readonly >
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <h6>Medicine Name</h6>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput [value]="vaccination.vaccineMedication.medicationName" readonly>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <h6>Vaccination Type</h6>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput [value]="vaccination.vaccineType" readonly>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <h6> ICD10 Code Name</h6>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput [value]="vaccination.vaccineICD10Code.name" readonly>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <h6> Vaccination Manufacturer</h6>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <input matInput [value]="vaccination.vaccineManufacturer" readonly>
+                    </mat-form-field>
+                  </div>
+                </div>                
+              </div>
+              <div class=" table-responsive">
+                <h6> Vaccination Side Effects</h6>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Side Effect Name</th>
+                      <th>Side Effect Severity</th>
+                      <th>Side Effect Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let sideEffect of vaccination.sideEffects; let i = index">
+                    <tr>
+                      <th scope="row">{{ i + 1 }}</th>
+                      <td>{{ sideEffect.adverseEffectName }}</td>
+                      <td>
+                        <div [ngClass]="{
+                          'task-low': sideEffect.adverseEffectSeverity === 'MILD',
+                          'task-high': sideEffect.adverseEffectSeverity === 'SEVERE',
+                          'task-normal': sideEffect.adverseEffectSeverity === 'MODERATE'
+                        }">
+                          <mat-icon matTooltip="Mild" aria-hidden="false" class="lbl-low"
+                            *ngIf="sideEffect.adverseEffectSeverity === 'MILD'">arrow_downward
+                          </mat-icon>
+                          <mat-icon matTooltip="Severe" aria-hidden="false" class="lbl-high"
+                            *ngIf="sideEffect.adverseEffectSeverity === 'SEVERE'">arrow_upward
+                          </mat-icon>
+                          <mat-icon matTooltip="Moderate" aria-hidden="false" class="lbl-normal"
+                            *ngIf="sideEffect.adverseEffectSeverity === 'MODERATE'">
+                            remove</mat-icon>
+                          {{ sideEffect.adverseEffectSeverity }}
+                        </div>
+                      </td>
+                      <td>{{ sideEffect.adverseEffectDesc }}</td>
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
