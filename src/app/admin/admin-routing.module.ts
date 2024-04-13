@@ -30,6 +30,26 @@ const routes: Routes = [
       import('./ingredient/ingredient.module').then((m) => m.IngredientModule),
   },
   {
+    path: 'allergy', // Définir le chemin uniquement pour allergy
+    loadChildren: () =>
+      import('./allergy/allergy.module').then((m) => m.AllergyModule),
+  },
+  {
+    path: 'vaccination',
+        loadChildren: () =>
+        import('./vaccination/vaccination.module').then((m) => m.VaccinationModule),
+  },
+  {
+    path: 'bioanalysis',
+    loadChildren: () =>
+      import('./bioanalysis/bioanalysis.module').then((m) => m.BioanalysisModule),
+  },
+  {
+    path: 'document-template',
+    loadChildren: () =>
+    import('./document-template/document-template.module').then((m) => m.DocumentTemplateModule),
+  },
+  {
     path: 'staff',
     loadChildren: () =>
       import('./staff/staff.module').then((m) => m.StaffModule),

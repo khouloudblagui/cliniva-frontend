@@ -1,0 +1,90 @@
+<div class="addContainer">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <div class="modal-about">
+            New Document Template
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button class="modal-close-button" aria-label="Close dialog"  (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="DocumentForm" (ngSubmit)="onUpdate()" >
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Document Title</mat-label>
+                        <input matInput formControlName="DocumentTitle" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Document Description</mat-label>
+                        <input matInput formControlName="DocumentDesc" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label> 
+                            Template Format
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>category</mat-icon>
+                        <mat-select formControlName="TemplateFormat" required>
+                            <mat-option [value]="'xlsx'">Word</mat-option>
+                            <mat-option [value]="'PDF'">PDF</mat-option>
+                            <mat-option [value]="'docx'">Excel</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label> 
+                            Element Type
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>category</mat-icon>
+                        <mat-select formControlName="ElementType" required>
+                            <mat-option [value]="'Service'">Service</mat-option>
+                            <mat-option [value]="'StaffGroup'">StaffGroup</mat-option>
+                            <mat-option [value]="'Staff'">Staff</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- File Input Field -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <input type="file" formControlName="file" (change)="onFileSelected($event)" accept=".docx,.pdf,.xls,.xlsx" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Element Type Key</mat-label>
+                        <input matInput formControlName="TemplateDoc_PrntElmntKy" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>      
+                 
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" type="submit">Save</button>
+                        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
