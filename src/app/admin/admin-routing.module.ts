@@ -45,6 +45,11 @@ const routes: Routes = [
       import('./bioanalysis/bioanalysis.module').then((m) => m.BioanalysisModule),
   },
   {
+    path: 'physical-treatment', // Chemin pour le module Physical Treatment
+    loadChildren: () =>
+      import('./physical-treatment/physical-treatment.module').then((m) => m.PhysicalTreatmentModule),
+  },
+  {
     path: 'document-template',
     loadChildren: () =>
     import('./document-template/document-template.module').then((m) => m.DocumentTemplateModule),
