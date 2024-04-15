@@ -383,6 +383,44 @@ export const ROUTES: RouteInfo[] = [
       }
     ],
   },
+   // Ajout de l'élément "physical treatment" avec ses sous-éléments
+{
+  path: '',
+  title: 'Physical Treatment',
+  iconType: 'material-icons-two-tone',
+  icon: 'directions_run',
+  class: 'menu-toggle',
+  groupTitle: false,
+  badge: '',
+  badgeClass: '',
+  role: ['Admin'],
+  submenu: [
+    {
+      path: '/admin/physical-treatment/list',
+      title: 'Treatment List',
+      iconType: '',
+      icon: '',
+      class: 'ml-menu',
+      groupTitle: false,
+      badge: '',
+      badgeClass: '',
+      role: [''],
+      submenu: [],
+    },
+    {
+      path: '/admin/physical-treatment/category',
+      title: 'Treatment Categories',
+      iconType: '',
+      icon: '',
+      class: 'ml-menu',
+      groupTitle: false,
+      badge: '',
+      badgeClass: '',
+      role: [''],
+      submenu: [],
+    },
+  ]
+},
   {
     path: '',
     title: 'Document Template',
