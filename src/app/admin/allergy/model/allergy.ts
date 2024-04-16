@@ -1,4 +1,3 @@
-import { Symptoms } from "./symptoms";
 
 export interface Allergy {
   allergyKy: any;
@@ -6,7 +5,7 @@ export interface Allergy {
   allergyType: string; // Changer le type en string ou en enum si nécessaire
   allergyDesc: string;
   allergySeverity: string; // Changer le type en string ou en enum si nécessaire
-  symptoms: Symptoms[];
+  allergySymptoms: String;
 }
 
 

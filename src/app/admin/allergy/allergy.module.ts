@@ -14,13 +14,7 @@ import { AllergylistComponent } from './allergylist/allergylist.component';
 import { EditAllergyComponent } from './view-details-allergy/dialogs/edit-allergy/edit-allergy.component';
 import { DeleteAllergyComponent } from './allergylist/dialog/delete-allergy/delete-allergy.component';
 import { AddAllergyComponent } from './allergylist/dialog/add-allergy/add-allergy.component';
-import { SymptomslistComponent } from './symptomslist/symptomslist.component';
-import { DeleteSymtomComponent } from './symptomslist/dialogs/delete-symtom/delete-symtom.component';
-import { AddSymtomComponent } from './symptomslist/dialogs/add-symtom/add-symtom.component';
-import { EditSymtomComponent } from './symptomslist/dialogs/edit-symtom/edit-symtom.component';
 import { ViewDetailsAllergyComponent } from './view-details-allergy/view-details-allergy.component';
-import { ViewDetailsSymptomComponent } from './view-details-symptom/view-details-symptom.component';
-import { EditSymptomComponent } from './view-details-symptom/dialogs/edit-symptom/edit-symptom.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +22,8 @@ import { EditSymptomComponent } from './view-details-symptom/dialogs/edit-sympto
     EditAllergyComponent,
     DeleteAllergyComponent,
     AddAllergyComponent,
-    SymptomslistComponent,
-    DeleteSymtomComponent,
-    AddSymtomComponent,
-    EditSymtomComponent,
     ViewDetailsAllergyComponent,
-    ViewDetailsSymptomComponent,
-    EditSymptomComponent,
+   
   ],
   providers: [AllergyService],
   imports: [

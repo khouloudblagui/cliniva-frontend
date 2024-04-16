@@ -23,22 +23,24 @@
             <div class="right">
               <ul class="tbl-export-btn">
                 <li class="tbl-header-btn">
-                  <div class="m-l-10" matTooltip="ADD">
-                    <button mat-mini-fab color="primary" >
-                      <mat-icon class="col-white">add</mat-icon>
-                    </button>
-                  </div>
+                  <a routerLink="/admin/medication/add-medication" matTooltip="ADD">
+                    <div class="m-l-10">
+                      <button mat-mini-fab color="primary">
+                        <mat-icon class="col-white">add</mat-icon>
+                      </button>
+                    </div>
+                  </a> 
                 </li>
                 <li class="tbl-header-btn">
                   <div class="m-l-10" matTooltip="REFRESH">
-                    <button mat-mini-fab color="primary" >
+                    <button mat-mini-fab color="primary" (click)="refresh()" >
                       <mat-icon class="col-white">refresh</mat-icon>
                     </button>
                   </div>
                 </li>
                 <li>
                   <div class="export-button m-l-10" matTooltip="XLSX">
-                    <img src="assets/images/icons/xlsx.png" alt=""  />
+                    <img src="assets/images/icons/xlsx.png" alt="" (click)="exportExcel()" />
                   </div>
                 </li>
               </ul>

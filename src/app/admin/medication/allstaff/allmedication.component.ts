@@ -100,6 +100,9 @@ export class AllMedicationComponent
       }
     });
   }
+  refresh(){
+    this.getAllMedications();
+  }
 
   search(filterValue: string): void {
     if (filterValue.trim()) {
@@ -111,5 +114,19 @@ export class AllMedicationComponent
       this.dataSource = this.originalDataSource; // Reset to original data on empty search
     }
   }
+  exportExcel(): void {
+    const exportData = this.dataSource.map(medication => ({
+      'Medication Code': medication.medicationCode,
+      'Medication Name': medication.medicationName,
+      'Medication Type': medication.medicationType,
+      'Medication Strength': medication.medicationStrength,
+      'Medication Dosage Form': medication.medicationDosageForm,
+      'Ingredients': medication.ingredients.join(', '), // Si ingredients est un tableau de chaînes
+      // 'Ingredients': medication.ingredients.map(ingredient => ingredient.name).join(', '), // Si ingredients est un tableau d'objets avec une propriété 'name'
+    }));
+    
+    TableExportUtil.exportToExcel(exportData, 'medication');
+  }
+  
   
 }

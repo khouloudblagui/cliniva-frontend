@@ -307,18 +307,6 @@ export const ROUTES: RouteInfo[] = [
         role: [''],
         submenu: [],
       },
-      {
-        path: '/admin/allergy/symptomslist',
-        title: 'Symptoms List',
-        iconType: '',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        badge: '',
-        badgeClass: '',
-        role: [''],
-        submenu: [],
-      },
     ],
   },
   {

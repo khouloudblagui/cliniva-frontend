@@ -58,33 +58,15 @@
                     <input matInput [value]="allergy.allergyDesc" readonly [disabled]="isInputDisabled">
                   </mat-form-field>
                 </div>
-                
-              </div>                
-            </div>
-            
-            <div class=" table-responsive">
-              <h6> Symptoms</h6>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Symptom Name</th>
-                    <th>Symptom Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <ng-container *ngFor="let symptom of allergy.symptoms; let i = index">
-                  <tr>
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ symptom.symptomName }}</td>
-                    <td>{{ symptom.symptomDesc }}</td>
-                  </tr>
-                </ng-container>
-                </tbody>
-              </table>
-              <div *ngIf="allergy && allergy.symptoms.length === 0" class="empty-symptoms-message">
-                No symptoms to display.
-              </div>
+              </div>  
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Symptoms</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergySymptoms" readonly [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+              </div>               
             </div>
           </div>
         </div>

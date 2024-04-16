@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
 })
 export class AllergylistComponent implements OnInit {
 
-  displayedColumns: string[] = ['select', 'allergyKy', 'allergyName', 'allergyType', 'allergySeverity', 'allergyDesc', 'actions'];
+  displayedColumns: string[] = ['select', 'allergyKy', 'allergyName', 'allergyType', 'allergySeverity', 'allergyDesc','allergySymptoms', 'actions'];
   dataSource!: MatTableDataSource<Allergy>;
   selection = new SelectionModel<Allergy>(true, []);
   exampleDatabase?:AllergyService
@@ -199,7 +199,7 @@ openAddModal(): void {
       'Allergy Type': allergy.allergyType,
       'Allergy Severity': allergy.allergySeverity,
       'Allergy Description': allergy.allergyDesc,
-      'Symptoms': allergy.symptoms?.map(effect => effect.symptomName).join(', ') ?? 'N/A', // Joining side effect names
+      'Allergy Symptoms': allergy.allergySymptoms
     }));
   
     TableExportUtil.exportToExcel(exportData, 'allergy');
