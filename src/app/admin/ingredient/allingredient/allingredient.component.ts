@@ -95,6 +95,9 @@ openEditDialog(row: any): void {
     }
   });
 }
+refresh() {
+  this.getAllIngredients();
+}
 
 search(filterValue: string): void {
   if (filterValue.trim()) {
@@ -106,6 +109,16 @@ search(filterValue: string): void {
     this.dataSource = this.originalDataSource; // Reset to original data on empty search
   }
 }
+
+exportExcel(): void {
+  const exportData = this.dataSource.map(ingredient => ({
+    'Ingredient Name': ingredient.ingredientName,
+    'Ingredient Description': ingredient.ingredientDesc
+  }));
+  
+  TableExportUtil.exportToExcel(exportData, 'ingredient');
+}
+
 
 
 }

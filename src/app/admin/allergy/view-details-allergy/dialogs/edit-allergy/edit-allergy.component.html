@@ -58,8 +58,14 @@
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Symptoms</mat-label>
                 <mat-icon class="material-icons-two-tone color-icon" matSuffix>healing</mat-icon>
-                <mat-select formControlName="symptoms" required multiple>
-                  <mat-option *ngFor="let symptom of symptoms" [value]="symptom">{{ symptom.symptomName }}</mat-option>
+                <mat-select formControlName="allergySymptoms" required>
+                    <mat-option [value]="'SNEEZING'">SNEEZING</mat-option>
+                    <mat-option [value]="'RUNNY_NOSE'">RUNNY_NOSE</mat-option>
+                    <mat-option [value]="'ITCHY_EYES'">ITCHY_EYES</mat-option>
+                    <mat-option [value]="'HIVES'">HIVES</mat-option>
+                    <mat-option [value]="'SWELLING'">SWELLING</mat-option>
+                    <mat-option [value]="'SHORTNESS_OF_BREATH'">SHORTNESS_OF_BREATH</mat-option>
+                    <mat-option [value]="'NAUSEA'">NAUSEA</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

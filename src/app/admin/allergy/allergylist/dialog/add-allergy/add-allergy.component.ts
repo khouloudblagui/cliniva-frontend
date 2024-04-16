@@ -3,9 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Allergy } from 'app/admin/allergy/model/allergy';
-import { Symptoms } from 'app/admin/allergy/model/symptoms';
 import { AllergyService } from 'app/admin/allergy/services/allergy.service';
-import { SymptomService } from 'app/admin/allergy/services/symptoms.service';
 @Component({
   selector: 'app-add-allergy',
   templateUrl: './add-allergy.component.html',
@@ -13,16 +11,12 @@ import { SymptomService } from 'app/admin/allergy/services/symptoms.service';
 })
 export class AddAllergyComponent {
   allergyForm: FormGroup;
-  symptomNames: string[] = []; // Propriété pour stocker les noms des symptômes
-  selectedSymptoms: Symptoms[] = []; // Ajoutez une propriété pour stocker les symptômes sélectionnés
-  selectedSymptomNames: string[] = []; // Tableau pour stocker les noms des symptômes sélectionnés
   
 
 
   constructor(
     private formBuilder: FormBuilder,
     private allergyService: AllergyService,
-    private symptomService: SymptomService,
     public dialogRef: MatDialogRef<AddAllergyComponent>,
     private snackBar: MatSnackBar
   ) {
@@ -30,79 +24,15 @@ export class AddAllergyComponent {
       allergyName: ['', Validators.required],
       allergyType: ['', Validators.required],
       allergySeverity: ['', Validators.required],
-      symptoms: ['', Validators.required], // Modifier ici
+      allergySymptoms: ['', Validators.required], 
       description: ['', Validators.required]
     });
     
   }
   ngOnInit(): void {
-    this.loadSymptomNames(); // Chargez les noms des symptômes au démarrage du composant
   }
 
-  loadSymptomNames(): void {
-    this.symptomService.getAllSymptoms().subscribe(
-      (data: Symptoms[]) => {
-        this.symptomNames = data.map(symptom => symptom.symptomName);
-        console.log('All Symptoms:', data); // Afficher tous les symptômes dans la console
-      },
-      (error) => {
-        console.error('Error fetching symptoms:', error);
-      }
-    );
-  }
-  onSelectSymptom(selectedSymptoms: string[]): void {
-    console.log('Selected symptoms:', selectedSymptoms);
-    console.log('All selected symptoms:', this.selectedSymptoms);
-    selectedSymptoms.forEach(symptomName => {
-      const normalizedSymptomName = symptomName.toLowerCase();
-      
-      // Check if the side effect is already selected
-      if (!this.selectedSymptoms.some(effect => effect.symptomName.toLowerCase() === normalizedSymptomName)) {
-        // If not selected, fetch the side effect and add it
-        this.symptomService.getAllSymptoms().subscribe(
-          (symptoms: Symptoms[]) => {
-            const selectedSymptom = symptoms.find(symptom => symptom.symptomName.toLowerCase() === normalizedSymptomName);
-            if (selectedSymptom) {
-              console.log('Symptom Name:', selectedSymptom.symptomName);
-              console.log('Symptom Description:', selectedSymptom.symptomDesc);
-              this.selectedSymptoms.push(selectedSymptom);
-            } else {
-              console.error('AdverseEffect not found:', symptomName);
-            }
-          },
-          (error) => {
-            console.error('Error fetching AdverseEffects:', error);
-          }
-        );
-      }
-    });
-  }
- /* onSelectSymptom(selectedSymptoms: string[]): void {
-    console.log('Selected symptoms:', selectedSymptoms);
-    console.log('All selected symptoms:', this.selectedSymptoms);
   
-    selectedSymptoms.forEach(symptomName => {
-      // Normaliser le nom du symptôme en minuscules pour une comparaison insensible à la casse
-      const normalizedSymptomName = symptomName.toLowerCase();
-  
-      // Recherchez le symptôme sélectionné dans la liste complète des symptômes
-      this.symptomService.getAllSymptoms().subscribe(
-        (symptoms: Symptoms[]) => {
-          const selectedSymptom = symptoms.find(symptom => symptom.symptomName.toLowerCase() === normalizedSymptomName);
-          if (selectedSymptom) {
-            console.log('Symptom Name:', selectedSymptom.symptomName);
-            console.log('Symptom Description:', selectedSymptom.symptomDesc);
-            this.selectedSymptoms.push(selectedSymptom); // Ajoutez le symptôme sélectionné à this.selectedSymptoms
-          } else {
-            console.error('Symptom not found:', symptomName);
-          }
-        },
-        (error) => {
-          console.error('Error fetching symptoms:', error);
-        }
-      );
-    });
-  }*/
   
   onSubmit(): void {
     if (this.allergyForm.valid) {
@@ -121,7 +51,7 @@ export class AddAllergyComponent {
         allergyType: formData.allergyType,
         allergySeverity: formData.allergySeverity,
         allergyDesc: formData.description, // Update property name to match form control
-        symptoms: this.selectedSymptoms
+        allergySymptoms: formData.allergySymptoms
       };
       console.log('Allergy Data:', allergyData);
   

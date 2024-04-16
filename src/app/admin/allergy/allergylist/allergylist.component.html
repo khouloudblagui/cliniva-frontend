@@ -125,6 +125,12 @@
                   <mat-cell *matCellDef="let element"> {{ element.allergyDesc }} </mat-cell>
                 </ng-container>
 
+                <!--  Allergy Type Column -->
+                <ng-container matColumnDef="allergySymptoms">
+                  <mat-header-cell *matHeaderCellDef> Allergy Symptoms </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{ element.allergySymptoms }} </mat-cell>
+                </ng-container>    
+
               <!-- actions -->
               <ng-container matColumnDef="actions">
                 <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
