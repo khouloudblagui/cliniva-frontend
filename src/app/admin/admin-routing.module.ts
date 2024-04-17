@@ -20,11 +20,7 @@ const routes: Routes = [
       import('./doctors/doctors.module').then((m) => m.DoctorsModule),
   },
 
-  {
-    path: 'Surgical procedure',
-    loadChildren: () =>
-      import('./Surgical procedure/surgicalprocedure.module').then((m) => m.SurgicalprocedureModule),
-  },
+
   {
     path: 'staff',
     loadChildren: () =>
@@ -68,10 +64,16 @@ const routes: Routes = [
       import('./ambulance/ambulance.module').then((m) => m.AmbulanceModule),
   },
   {
+    path: 'Surgical procedure',
+    loadChildren: () =>
+      import('./Surgical procedure/surgicalprocedure.module').then((m) => m.SurgicalprocedureModule),
+  },
+  {
     path: 'pharmacy',
     loadChildren: () =>
       import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
   },
+
 ];
 
 @NgModule({
