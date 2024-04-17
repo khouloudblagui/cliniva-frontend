@@ -19,14 +19,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./doctors/doctors.module').then((m) => m.DoctorsModule),
   },
-
-
   {
     path: 'staff',
     loadChildren: () =>
       import('./staff/staff.module').then((m) => m.StaffModule),
   },
-
   {
     path: 'patients',
     loadChildren: () =>
@@ -73,7 +70,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
   },
-
 ];
 
 @NgModule({
