@@ -1,0 +1,36 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Upload surgical procedure'" [items]="['surgicalprocedure']" [active_item]="'surgicalprocedure-upload'"></app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong> Ingredient Information</strong></h2>
+
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center upload-buttons border-bottom">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5 mt-3">
+                <label for="fileUpload" class="custom-file-upload">
+                  <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="form-control-file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                  <div class="select-file-button">Choose File</div>
+                  <span class="selected-file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                  <span class="selected-file-name" *ngIf="!selectedFile">No file chosen</span>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3 mt-3">
+                <button class="btn-space" mat-raised-button
+                color="primary" (click)="uploadFile()" [disabled]="!selectedFile">Upload</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+  </div>
+</section>
