@@ -11,7 +11,7 @@ import { MedicationService } from './allstaff/medication.service';
 import { ComponentsModule } from '@shared/components/components.module';
 import { SharedModule } from '@shared';
 import { UploadFileComponent } from './upload-file/upload-file.component';
-import { IngredientService } from '../ingredient/allingredient/ingredient.service';
+
 @NgModule({
   declarations: [
     AllMedicationComponent,
@@ -29,6 +29,6 @@ import { IngredientService } from '../ingredient/allingredient/ingredient.servic
     ComponentsModule,
     SharedModule
   ],
-  providers: [MedicationService,IngredientService],
+  providers: [MedicationService],
 })
 export class MedicationModule {}

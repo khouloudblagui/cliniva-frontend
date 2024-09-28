@@ -1,27 +1,27 @@
-import { MedicIngredientLink } from '../../models/MedicIngredientLink';
-import { Ingredient } from 'app/admin/ingredient/allingredient/ingredient.model';
+
+
 
 export class Medication {
   medicationKy?:number;
   medicationCode: string;
   medicationName: string;
-  medicationType: MedicationType; 
-  medicationStrength: MedicationStrength; 
+  medicationType: MedicationType;
+  medicationStrength: MedicationStrength;
   medicationDosageForm: DosageForm;
-  ingredients: Ingredient[]=[]; 
+
 
 
   constructor(medication: Medication) {
     this.medicationKy=medication.medicationKy;
     this.medicationCode = medication.medicationCode || '';
     this.medicationName = medication.medicationName || '';
-    this.medicationType = medication.medicationType ; 
-    this.medicationStrength = medication.medicationStrength; 
-    this.medicationDosageForm = medication.medicationDosageForm ; 
-    this.ingredients=medication.ingredients;
+    this.medicationType = medication.medicationType ;
+    this.medicationStrength = medication.medicationStrength;
+    this.medicationDosageForm = medication.medicationDosageForm ;
+
   }
 
-  
+
 }
 export enum DosageForm {
   ORAL,

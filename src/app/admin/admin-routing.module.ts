@@ -25,11 +25,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./medication/medication.module').then((m) => m.MedicationModule),
   },
-  {
-    path: 'ingredient',
-    loadChildren: () =>
-      import('./ingredient/ingredient.module').then((m) => m.IngredientModule),
-  },
+
   {
     path: 'allergy', // Définir le chemin uniquement pour allergy
     loadChildren: () =>
@@ -50,11 +46,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./physical-treatment/physical-treatment.module').then((m) => m.PhysicalTreatmentModule),
   },
-  {
-    path: 'document-template',
-    loadChildren: () =>
-    import('./document-template/document-template.module').then((m) => m.DocumentTemplateModule),
-  },
+  
   {
     path: 'staff',
     loadChildren: () =>
@@ -65,52 +57,22 @@ const routes: Routes = [
     loadChildren: () =>
       import('./patients/patients.module').then((m) => m.PatientsModule),
   },
-  {
-    path: 'billing',
-    loadChildren: () =>
-      import('./billing/billing.module').then((m) => m.BillingModule),
-  },
+
   {
     path: 'room',
     loadChildren: () => import('./room/room.module').then((m) => m.RoomModule),
   },
-  {
-    path: 'departments',
-    loadChildren: () =>
-      import('./departments/departments.module').then(
-        (m) => m.DepartmentsModule
-      ),
-  },
-  {
-    path: 'inventory',
-    loadChildren: () =>
-      import('./inventory/inventory.module').then((m) => m.InventoryModule),
-  },
-  {
-    path: 'records',
-    loadChildren: () =>
-      import('./records/records.module').then((m) => m.RecordsModule),
-  },
-  {
-    path: 'ambulance',
-    loadChildren: () =>
-      import('./ambulance/ambulance.module').then((m) => m.AmbulanceModule),
-  },
+
+
+
+
   {
     path: 'Surgical procedure',
     loadChildren: () =>
       import('./Surgical procedure/surgicalprocedure.module').then((m) => m.SurgicalprocedureModule),
   },
-  {
-    path: 'pharmacy',
-    loadChildren: () =>
-      import('./pharmacy/pharmacy.module').then((m) => m.PharmacyModule),
-  },
-  {
-    path: 'ICD10',
-    loadChildren: () =>
-      import('./ICD10/ICD10.module').then((m) => m.ICD10Module),
-  }
+
+
 ];
 
 @NgModule({

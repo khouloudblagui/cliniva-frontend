@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MedicationResponse } from '../MedicationResponse';
 import { MedicationService } from '../allstaff/medication.service';
-import { IngredientService } from '../../ingredient/allingredient/ingredient.service';
-import { Ingredient } from '../../ingredient/allingredient/ingredient.model';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class AddMedicationComponent implements OnInit {
   subscription!: Subscription;
-  ingredients : Ingredient [] = [];  
+
   strengthOptions: string[] = [];
   medicationForm: UntypedFormGroup;
   medicationTypes: { [key: string]: string[] } = {
@@ -41,7 +38,7 @@ export class AddMedicationComponent implements OnInit {
   };
 
   constructor(
-    private fb: UntypedFormBuilder,private medicationService: MedicationService, private ingredientService : IngredientService
+    private fb: UntypedFormBuilder, private medicationService: MedicationService
   ) {
     this.medicationForm = this.fb.group({
       medicationCode: ['', [Validators.required]],
@@ -49,21 +46,12 @@ export class AddMedicationComponent implements OnInit {
       medicationType: ['', [Validators.required]],
       medicationStrength: ['', [Validators.required]],
       medicationDosageForm: ['', [Validators.required]],
-      ingredients: [''], 
     });
   }
 
   ngOnInit(): void {
-    this.fetchIngredients();
+    throw new Error('Method not implemented.');
   }
-
-  public fetchIngredients() {
-    this.ingredientService.getAllIngredients().subscribe((res) => {
-      console.log(res);
-      this.ingredients = res; 
-    });
-  }
-
 
   onTypeChange(): void {
     const selectedType = this.medicationForm.get('medicationType')?.value;
@@ -82,19 +70,14 @@ export class AddMedicationComponent implements OnInit {
       medicationType: formData.medicationType,
       medicationStrength: formData.medicationStrength,
       medicationDosageForm: formData.medicationDosageForm,
-      ingredients: formData.ingredients,
-      medicIngredientLinks: formData.ingredients.map((ingredient: Ingredient) => {
-        return { ing: { ingredientKy: ingredient.ingredientKy } };
-      })
+      ingredients: []
     };
-  
-   
+
     this.medicationService.checkIfMedicationExists(newMedication.medicationName, newMedication.medicationCode)
       .subscribe((exists: boolean) => {
         if (exists) {
-          alert('The Medication already exist');
+          alert('The Medication already exists');
         } else {
-          // Le médicament n'existe pas, donc l'ajouter
           this.medicationService.addMedication(newMedication);
           console.log('Medication added successfully', newMedication);
           alert('Medication added successfully');
@@ -102,10 +85,8 @@ export class AddMedicationComponent implements OnInit {
         }
       });
   }
-  
+
   cancel(): void {
     this.medicationForm.reset();
   }
 }
-
-

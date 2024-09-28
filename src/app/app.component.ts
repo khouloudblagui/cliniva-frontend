@@ -1,20 +1,20 @@
-import { ICD10Service } from './admin/ICD10/allICD10s/ICD10.service';
+
 import { Component } from '@angular/core';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { ICD10 } from './admin/ICD10/allICD10s/ICD10.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ICD10Service]
+  providers: []
 })
 export class AppComponent {
-  title: string = 'careplan';
+  title = 'careplan';
   //icd10s: ICD10[] | undefined;
   currentUrl!: string;
   /*constructor(private icd10service: ICD10Service){
-    
+
   }
  */
   constructor(public _router: Router) {
@@ -25,18 +25,18 @@ export class AppComponent {
         );
       }
       if (routerEvent instanceof NavigationEnd) {
-        //empty 
+        //empty
       }
       window.scrollTo(0, 0);
     });
-  
+
    /* ngOnInit() {
       console.log('jdfsjdfks');
       this.icd10service.getAllIcd10ss().subscribe((datas: ICD10[]) => {
         this.icd10s = datas;
       });
     }*/
-    
+
     }}
-    
+
 

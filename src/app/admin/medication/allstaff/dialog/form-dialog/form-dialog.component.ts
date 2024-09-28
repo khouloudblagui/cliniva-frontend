@@ -6,8 +6,6 @@ import {
 } from '@angular/forms';
 import { Medication } from '../../medication.model';
 import { MedicationResponse } from 'app/admin/medication/MedicationResponse';
-import { Ingredient } from 'app/admin/ingredient/allingredient/ingredient.model';
-import { IngredientService } from 'app/admin/ingredient/allingredient/ingredient.service';
 
 export interface DialogData {
   medicationKy: number;
@@ -21,7 +19,7 @@ export interface DialogData {
 })
 export class FormDialogComponent implements OnInit {
   medicationForm!: FormGroup;
-  ingredients: Ingredient[] = [];
+
   strengthOptions: string[] = [];
   medicationTypes: { [key: string]: string[] } = {
     OINTMENT: [
@@ -50,14 +48,13 @@ export class FormDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private medicationService: MedicationService,
-    private ingredientService: IngredientService,
+
     private fb: FormBuilder
   ) {}
-
   ngOnInit(): void {
-    this.medicationForm = this.createMedicationForm();
-    this.fetchIngredients();
+    throw new Error('Method not implemented.');
   }
+
 
   onTypeChange(): void {
     const selectedType = this.medicationForm.get('medicationType')?.value;
@@ -94,12 +91,7 @@ export class FormDialogComponent implements OnInit {
     return this.medicationTypes[medicationType];
   }
 
-  public fetchIngredients() {
-    this.ingredientService.getAllIngredients().subscribe((res) => {
-      console.log(res);
-      this.ingredients = res;
-    });
-  }
+
 
   onCancelClick(): void {
     this.dialogRef.close();
@@ -107,24 +99,17 @@ export class FormDialogComponent implements OnInit {
   ingredientLinks:any = []
   onSubmit(): void {
     const updatedMedication = this.medicationForm.value;
-   
-    updatedMedication.ingredients.map((ing:any)=>{
-      
-        this.ingredients.map((item:any)=>{
-          if((item.ingredientName == ing.ingredientName) && (item.ingredientDesc == ing.ingredientDesc)){
-            this.ingredientLinks.push({ ing: { ingredientKy: item.ingredientKy } })
-          }
-        })
-    })
 
-  
+
+
+
     const updatedMedicationData = {
       medicationCode: updatedMedication.medicationCode,
       medicationName: updatedMedication.medicationName,
       medicationType: updatedMedication.medicationType,
       medicationStrength: updatedMedication.medicationStrength,
       medicationDosageForm: updatedMedication.medicationDosageForm,
-      medicIngredientLinks: this.ingredientLinks 
+      medicIngredientLinks: this.ingredientLinks
     };
     console.log(updatedMedicationData)
     this.medicationService.checkIfMedicationExists(updatedMedication.medicationName,updatedMedicationData.medicationCode)
