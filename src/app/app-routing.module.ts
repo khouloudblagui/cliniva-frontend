@@ -30,7 +30,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./doctor/doctor.module').then((m) => m.DoctorModule),
       },
-      
+
       {
         path: 'patient',
         canActivate: [AuthGuard],
@@ -40,37 +40,21 @@ const routes: Routes = [
         loadChildren: () =>
           import('./patient/patient.module').then((m) => m.PatientModule),
       },
-    
+
       {
         path: 'calendar',
         loadChildren: () =>
           import('./calendar/calendar.module').then((m) => m.CalendarsModule),
       },
-      {
-        path: 'task',
-        loadChildren: () =>
-          import('./task/task.module').then((m) => m.TaskModule),
-      },
-      {
-        path: 'contacts',
-        loadChildren: () =>
-          import('./contacts/contacts.module').then((m) => m.ContactsModule),
-      },
-      {
-        path: 'email',
-        loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule),
-      },
+
+
+
       {
         path: 'apps',
         loadChildren: () =>
-          import('./apps/apps.module').then((m) => m.AppsModule),
+          import('./Reanimation/apps.module').then((m) => m.AppsModule),
       },
-      {
-        path: 'widget',
-        loadChildren: () =>
-          import('./widget/widget.module').then((m) => m.WidgetModule),
-      },
+
       {
         path: 'ui',
         loadChildren: () => import('./ui/ui.module').then((m) => m.UiModule),
@@ -90,35 +74,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('./charts/charts.module').then((m) => m.ChartsModule),
       },
-      {
-        path: 'timeline',
-        loadChildren: () =>
-          import('./timeline/timeline.module').then((m) => m.TimelineModule),
-      },
+
       {
         path: 'icons',
         loadChildren: () =>
           import('./icons/icons.module').then((m) => m.IconsModule),
       },
-      {
-        path: 'extra-pages',
-        loadChildren: () =>
-          import('./extra-pages/extra-pages.module').then(
-            (m) => m.ExtraPagesModule
-          ),
-      },
-      {
-        path: 'maps',
-        loadChildren: () =>
-          import('./maps/maps.module').then((m) => m.MapsModule),
-      },
-      {
-        path: 'multilevel',
-        loadChildren: () =>
-          import('./multilevel/multilevel.module').then(
-            (m) => m.MultilevelModule
-          ),
-      },
+
+
+
     ],
   },
   {

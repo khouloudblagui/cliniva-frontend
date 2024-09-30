@@ -23,7 +23,7 @@ export class EditAllergyComponent implements OnInit {
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
     private allergyservice: AllergyService,
-  
+
   ) {
     // Initialize form with data passed from parent component
     this.allergyForm = this.formBuilder.group({
@@ -38,8 +38,8 @@ export class EditAllergyComponent implements OnInit {
 
   ngOnInit(): void {
 }
- 
-  
+
+
 
   showNotification(
     colorName: string,
