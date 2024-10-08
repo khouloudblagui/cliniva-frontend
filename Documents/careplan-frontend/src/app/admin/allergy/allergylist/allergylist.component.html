@@ -1,0 +1,169 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb">
+            <li>
+              <h4 class="page-title">Allergies</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a [routerLink]="'/admin/dashboard/main'">
+                <!-- <i class="fas fa-home"></i> -->
+                <i-feather name="home" class="breadcrumb-icon"></i-feather>
+              </a>
+            </li>
+            <li class="breadcrumb-item">Allergies List</li>
+            <li class="breadcrumb-item active">Allergies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Allergies</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                  <input placeholder="Search" type="text" #filter class="browser-default search-field"
+                    aria-label="Search box"
+                    (ngModelChange)="searchAllergies(key.value)" #key="ngModel" ngModel
+                       name="key" id="searchName"
+                    >
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="ADD">
+                    <button mat-mini-fab color="primary" (click)="openAddModal()">
+                      <mat-icon class="col-white">add</mat-icon>
+                    </button>
+                  </div>
+                </li>
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="REFRESH">
+                    <button mat-mini-fab color="primary" (click)="refresh()">
+                      <mat-icon class="col-white">refresh</mat-icon>
+                    </button>
+                  </div>
+                <li>
+                  <div class="export-button m-l-10" matTooltip="XLSX" >
+                    <img src="assets/images/icons/xlsx.png" alt=""  (click)="exportExcel()"/>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="body overflow-auto">
+            <div class="responsive_table">
+              <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
+                    </mat-checkbox>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)" [ngClass]="'tbl-checkbox'">
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+                <!-- ID Allergy Column -->
+                <ng-container matColumnDef="allergyKy">
+                  <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                  <mat-cell *matCellDef="let element" > {{ element.allergyKy }} </mat-cell>
+                </ng-container>
+              
+                <!--  Allergy Name Column -->
+                <ng-container matColumnDef="allergyName">
+                  <mat-header-cell *matHeaderCellDef> Allergy Name </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{ element.allergyName }} </mat-cell>
+                </ng-container>
+              
+                <!--  Allergy Type Column -->
+                <ng-container matColumnDef="allergyType">
+                  <mat-header-cell *matHeaderCellDef> Allergy Type </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{ element.allergyType }} </mat-cell>
+                </ng-container>             
+              
+                <!-- Allergy Severity Column -->
+               <!-- Allergy Severity Column -->
+                <ng-container matColumnDef="allergySeverity">
+                  <mat-header-cell *matHeaderCellDef> Allergy Severity </mat-header-cell>
+                  <mat-cell *matCellDef="let element" [ngClass]="{
+                    'task-low': element.allergySeverity === 'MILD',
+                    'task-high': element.allergySeverity === 'SEVERE',
+                    'task-normal': element.allergySeverity === 'MODERATE'
+                  }">
+                <div>
+                  <mat-icon matTooltip="Mild" aria-hidden="false" class="lbl-low"
+                            *ngIf="element.allergySeverity === 'MILD'">arrow_downward</mat-icon>
+                  <mat-icon matTooltip="Severe" aria-hidden="false" class="lbl-high"
+                            *ngIf="element.allergySeverity === 'SEVERE'">arrow_upward</mat-icon>
+                  <mat-icon matTooltip="Moderate" aria-hidden="false" class="lbl-normal"
+                            *ngIf="element.allergySeverity === 'MODERATE'">remove</mat-icon>
+                  {{ element.allergySeverity }}
+                </div>
+              </mat-cell>
+            </ng-container>
+
+
+                <!-- Allergy Description Column -->
+                <ng-container matColumnDef="allergyDesc">
+                  <mat-header-cell *matHeaderCellDef> Allergy Description </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{ element.allergyDesc }} </mat-cell>
+                </ng-container>
+
+                <!--  Allergy Type Column -->
+                <ng-container matColumnDef="allergySymptoms">
+                  <mat-header-cell *matHeaderCellDef> Allergy Symptoms </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{ element.allergySymptoms }} </mat-cell>
+                </ng-container>    
+
+              <!-- actions -->
+              <ng-container matColumnDef="actions">
+                <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
+                  <!-- Bouton "View Details" -->
+                  <button mat-icon-button (click)="$event.stopPropagation()" (click)="viewAllergyDetails(row)" class="tbl-action-btn" matTooltip="VIEW DETAILS">
+                    <mat-icon class="tbl-fav-view" color="primary">visibility</mat-icon>
+                  </button>
+                  <!-- Bouton "Delete" -->
+                  <button mat-icon-button (click)="$event.stopPropagation()" (click)="openDeleteModal(row)" class="tbl-action-btn" matTooltip="DELETE">
+                    <mat-icon class="tbl-fav-delete" color="warn">delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+              
+              
+
+                <!-- Define displayed columns -->
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+              <!-- Loading spinner -->
+              <div *ngIf="exampleDatabase?.isTblLoading" class="tbl-spinner">
+                <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                </mat-progress-spinner>
+              </div>
+              <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]">
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

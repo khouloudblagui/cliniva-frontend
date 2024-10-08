@@ -1,0 +1,82 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Physical Treatment Category List'" [items]="['Physical Treatment Category details']" [active_item]="'View details'">
+      </app-breadcrumb>
+    </div>
+    
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Physical Treatment Category details</h2>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="UPDATE">
+                    <button mat-mini-fab color="primary" (click)="openUpdateModal()" >
+                      <mat-icon class="col-white">update</mat-icon>
+                    </button>
+                                     
+                  </div>
+              </ul>
+            </div>
+          </div>
+          <div class="body" *ngIf="!isLoading && physicalTreatmentCategory">
+            <div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Physical Treatment Category Name</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="physicalTreatmentCategory.phyCategoryName" formControlName="phyCategoryName" [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Physical Treatment Category Description</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="physicalTreatmentCategory.phyCategoryDesc" formControlName="phyCategoryDesc" [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+              </div>
+              
+            </div>
+            <div class="table-responsive" *ngIf="associatedTreatment && associatedTreatment.length > 0">
+              <h6>Physical Treatments with this Category</h6>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Physical Treatment Name</th>
+                    <th>Physical Treatment Duration</th>
+                    <th>Physical Treatment Note</th>
+                    <th>Physical Treatment Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let treatment of associatedTreatment; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ treatment.phyTrName }}</td>
+                    <td>{{ treatment.phyTrDuration }}</td>
+                    <td>{{ treatment.phyTrNote }}</td>
+                    <td>{{ treatment.phyTrDesc }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+          </div>
+          <div class="body" *ngIf="isLoading">
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

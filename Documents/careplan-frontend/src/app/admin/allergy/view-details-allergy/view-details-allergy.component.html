@@ -1,0 +1,76 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Allergies List'" [items]="['Allergy details']" [active_item]="'View details'">
+      </app-breadcrumb>
+    </div>
+    
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Allergy details</h2>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <div class="m-l-10" matTooltip="UPDATE">
+                    <button mat-mini-fab color="primary" (click)="openUpdateModal()" >
+                      <mat-icon class="col-white">update</mat-icon>
+                    </button>
+                                       
+                  </div>
+              </ul>
+            </div>
+          </div>
+          <div class="body" *ngIf="!isLoading && allergy">
+            <div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Name</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergyName"  [disabled]="isInputDisabled" >
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Type</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergyType"  [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Severity</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergySeverity" readonly [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Description</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergyDesc" readonly [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+              </div>  
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <h6>Allergy Symptoms</h6>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <input matInput [value]="allergy.allergySymptoms" readonly [disabled]="isInputDisabled">
+                  </mat-form-field>
+                </div>
+              </div>               
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

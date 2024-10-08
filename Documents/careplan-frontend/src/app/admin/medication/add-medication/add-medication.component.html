@@ -1,0 +1,99 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Add Medication'" [items]="['Medications']" [active_item]="'Add Medication'"></app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong> Medication Information</strong></h2>
+
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Medication Code</mat-label>
+                    <input matInput formControlName="medicationCode" required>
+                    <mat-error *ngIf="medicationForm.get('medicationCode')?.hasError('required')">
+                      Medication Code is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Medication Name</mat-label>
+                    <input matInput formControlName="medicationName" required>
+                    <mat-error *ngIf="medicationForm.get('medicationName')?.hasError('required')">
+                      Medication Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Medication Type</mat-label>
+                    <mat-select formControlName="medicationType" required (selectionChange)="onTypeChange()">
+                      <mat-option [value]="'OINTMENT'">OINTMENT</mat-option>
+                      <mat-option [value]="'SOFT_CAPSULE'">SOFT_CAPSULE</mat-option>
+                      <mat-option [value]="'FILM_COATED_TABLET'">FILM_COATED_TABLET</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="medicationForm.get('medicationType')?.hasError('required')">
+                      Medication Type is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Medication Strength</mat-label>
+                    <mat-select formControlName="medicationStrength" required>
+                      <ng-container *ngFor="let medicationStrength of strengthOptions">
+                        <mat-option [value]="medicationStrength">{{ medicationStrength }}</mat-option>
+                      </ng-container>
+                    </mat-select>
+                    <mat-error *ngIf="medicationForm.get('medicationStrength')?.hasError('required')">
+                      Medication Strength is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                    <mat-label>Medication DosageForm</mat-label>
+                    <mat-select formControlName="medicationDosageForm" required>
+                      <mat-option [value]="'ORAL'">
+                        ORAL
+                      </mat-option>
+                      <mat-option [value]="'TOPICAL'">
+                        TOPICAL
+                      </mat-option>
+                      <mat-option [value]="'INJECTABLE'">
+                        INJECTABLE
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="medicationForm.get('medicationDosageForm')?.hasError('required')">
+                      Medication DosageForm is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button class="btn-space" [disabled]="!medicationForm.valid " mat-raised-button
+                    color="primary" >Submit</button>
+                  <button type="button" mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
