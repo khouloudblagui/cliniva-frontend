@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿/*import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpResponse,
@@ -122,3 +122,4 @@ export const fakeBackendProvider = {
   useClass: FakeBackendInterceptor,
   multi: true,
 };
+*/

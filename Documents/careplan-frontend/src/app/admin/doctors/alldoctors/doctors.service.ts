@@ -1,6 +1,130 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Doctors } from './doctors.model';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { UnsubscribeOnDestroyAdapter } from '@shared';
+import { AuthService } from '@core/service/auth.service';
+
+
+@Injectable()
+export class DoctorsService extends UnsubscribeOnDestroyAdapter {
+  private readonly API_URL = 'http://localhost:8087/doctors';
+  isTblLoading = true;
+  dataChange: BehaviorSubject<Doctors[]> = new BehaviorSubject<Doctors[]>([]);
+  dialogData!: Doctors;
+
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
+    super();
+  }
+
+  get data(): Doctors[] {
+    return this.dataChange.value;
+  }
+
+  getDialogData() {
+    return this.dialogData;
+  }
+
+  /** CRUD METHODS */
+  getAllDoctors(): void {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    });
+
+    this.subs.sink = this.httpClient.get<Doctors[]>(this.API_URL, { headers }).subscribe({
+      next: (data) => {
+        this.isTblLoading = false;
+        this.dataChange.next(data);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.isTblLoading = false;
+        console.error(error.name + ' ' + error.message);
+      },
+    });
+  }
+
+  getDoctorById(id: number): Observable<Doctors> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    });
+
+    return this.httpClient.get<Doctors>(`${this.API_URL}/${id}`, { headers });
+  }
+
+  addDoctors(doctors: Doctors): void {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    });
+
+    this.subs.sink = this.httpClient.post<Doctors>(this.API_URL, doctors, { headers }).subscribe({
+      next: (data) => {
+        this.dialogData = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error adding doctor:', error);
+      },
+    });
+  }
+
+  updateDoctors(id: number, doctors: Doctors): void {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    });
+
+    this.subs.sink = this.httpClient.put<Doctors>(`${this.API_URL}/${id}`, doctors, { headers }).subscribe({
+      next: (data) => {
+        this.dialogData = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error updating doctor:', error);
+      },
+    });
+  }
+
+  deleteDoctors(id: number): void {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    });
+
+    this.subs.sink = this.httpClient.delete(`${this.API_URL}/${id}`, { headers }).subscribe({
+      next: () => {
+        console.log(`Doctor with ID ${id} deleted`);
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error deleting doctor:', error);
+      },
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Doctors } from './doctors.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 
@@ -23,9 +147,9 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
     return this.dialogData;
   }
 
-  /** CRUD METHODS */
+
   getAllDoctors(): void {
-    this.subs.sink = this.httpClient.get<Doctors[]>(this.API_URL).subscribe({
+    this.subs.sink = this.httpClient.get<Doctors[]>(this.API_URL, { withCredentials: true }).subscribe({
       next: (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -39,12 +163,12 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
 
 
   getDoctorById(id: number): Observable<Doctors> {
-    return this.httpClient.get<Doctors>(`${this.API_URL}/${id}`);
+    return this.httpClient.get<Doctors>(`${this.API_URL}/${id}`, { withCredentials: true });
   }
 
 
   addDoctors(doctors: Doctors): void {
-    this.subs.sink = this.httpClient.post<Doctors>(this.API_URL, doctors).subscribe({
+    this.subs.sink = this.httpClient.post<Doctors>(this.API_URL, doctors, { withCredentials: true }).subscribe({
       next: (data) => {
         this.dialogData = data;
       },
@@ -56,7 +180,7 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
 
 
   updateDoctors(id: number, doctors: Doctors): void {
-    this.subs.sink = this.httpClient.put<Doctors>(`${this.API_URL}/${id}`, doctors).subscribe({
+    this.subs.sink = this.httpClient.put<Doctors>(`${this.API_URL}/${id}`, doctors, { withCredentials: true }).subscribe({
       next: (data) => {
         this.dialogData = data;
       },
@@ -68,7 +192,7 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
 
 
   deleteDoctors(id: number): void {
-    this.subs.sink = this.httpClient.delete(`${this.API_URL}/${id}`).subscribe({
+    this.subs.sink = this.httpClient.delete(`${this.API_URL}/${id}`, { withCredentials: true }).subscribe({
       next: () => {
         console.log(`Doctor with ID ${id} deleted`);
       },
@@ -77,4 +201,4 @@ export class DoctorsService extends UnsubscribeOnDestroyAdapter {
       },
     });
   }
-}
+}*/
