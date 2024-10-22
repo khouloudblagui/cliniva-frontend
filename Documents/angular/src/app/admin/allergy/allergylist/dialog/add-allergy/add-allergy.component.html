@@ -1,0 +1,96 @@
+<div class="addContainer">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <div class="modal-about">
+                    Add Allergy
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button class="modal-close-button" aria-label="Close dialog"  (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="allergyForm" (ngSubmit)="onSubmit()" >
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Allergy Name</mat-label>
+                        <input matInput formControlName="allergyName" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label> 
+                            Allergy Type
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>category</mat-icon>
+                        <mat-select formControlName="allergyType" required>
+                            <mat-option value="HAY_FEVER">HAY_FEVER</mat-option>
+                            <mat-option value="FOOD_ALLERGY">FOOD_ALLERGY</mat-option>
+                            <mat-option value="INSECT_STING_ALLERGY">INSECT_STING_ALLERGY</mat-option>
+                            <mat-option value="DRUG_ALLERGY">DRUG_ALLERGY</mat-option>
+                            <mat-option value="ATOPIC_DERMATITIS">ATOPIC_DERMATITIS</mat-option>
+                            <mat-option value="ANAPHYLAXIS">ANAPHYLAXIS</mat-option>
+                        </mat-select>                        
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>
+                            Allergy Severity
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>error</mat-icon>
+                        <mat-select formControlName="allergySeverity" required>
+                            <mat-option [value]="'MILD'">MILD</mat-option>
+                            <mat-option [value]="'MODERATE'">MODERATE</mat-option>
+                            <mat-option [value]="'SEVERE'">SEVERE</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Symptoms</mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>healing</mat-icon>
+                        <mat-select formControlName="allergySymptoms" required>
+                            <mat-option [value]="'SNEEZING'">SNEEZING</mat-option>
+                            <mat-option [value]="'RUNNY_NOSE'">RUNNY_NOSE</mat-option>
+                            <mat-option [value]="'ITCHY_EYES'">ITCHY_EYES</mat-option>
+                            <mat-option [value]="'HIVES'">HIVES</mat-option>
+                            <mat-option [value]="'SWELLING'">SWELLING</mat-option>
+                            <mat-option [value]="'SHORTNESS_OF_BREATH'">SHORTNESS_OF_BREATH</mat-option>
+                            <mat-option [value]="'NAUSEA'">NAUSEA</mat-option>
+                        </mat-select>                                                                                             
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Allergy Description</mat-label>
+                        <input matInput formControlName="description" type="text" required>
+                        <textarea matInput formControlName="description" required rows="2"></textarea>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>description</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" type="submit">Save</button>
+                        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

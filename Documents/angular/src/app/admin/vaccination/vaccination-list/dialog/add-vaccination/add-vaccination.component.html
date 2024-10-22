@@ -1,0 +1,102 @@
+<div class="addContainer">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <div class="modal-about">
+            New Vaccination List
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button class="modal-close-button" aria-label="Close dialog"  (click)="onCancel()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="vaccinationForm" (ngSubmit)="onSubmit()" >
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Vaccination Name</mat-label>
+                        <input matInput formControlName="vaccinationName" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label> 
+                            Vaccination Type
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>category</mat-icon>
+                        <mat-select formControlName="vaccinationType" required>
+                            <mat-option [value]="'INACTIVATED'">Inactivated</mat-option>
+                            <mat-option [value]="'LIVE_ATTENUATED'">Live attenuated</mat-option>
+                            <mat-option [value]="'SUBUNIT_PROTEIN'">Subunit protein</mat-option>
+                            <mat-option [value]="'VIRAL_VECTOR'">Viral vector</mat-option>
+                            <mat-option [value]="'MRNA'">Mrna</mat-option>
+                            <mat-option [value]="'DNA'">Dna</mat-option>
+                            <mat-option [value]="'TOXOID'">Toxoid</mat-option>
+                            <mat-option [value]="'CONJUGATE'">Conjugate</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Vaccination Manufacturer</mat-label>
+                        <input matInput formControlName="Manufacturer" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+                    
+            <!-- Medication -->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Medication</mat-label>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>local_pharmacy</mat-icon>
+            <mat-select formControlName="vaccineMedication" required>
+              <mat-option *ngFor="let medication of medications" [value]="medication">{{medication.medicationName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- ICD10 Code -->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>ICD10 Code</mat-label>
+            <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>assignment</mat-icon>
+            <mat-select formControlName="vaccineICD10Code" required>
+              <mat-option *ngFor="let icd10 of icd10Codes" [value]="icd10">{{icd10.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Vaccination Side Effects</mat-label>
+                <mat-icon class="material-icons-two-tone color-icon" matSuffix>healing</mat-icon>
+                <mat-select formControlName="SideEffects" required (selectionChange)="onSelectSideEffects($event.value)" multiple>
+                    <mat-option *ngFor="let sideEffects of sideEffectsNames" [value]="sideEffects">{{ sideEffects }}</mat-option>
+                  </mat-select>                                                 
+            </mat-form-field>
+        </div>
+    </div>
+           
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" type="submit">Save</button>
+                        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="addContainer">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <div class="modal-about">
+                    Add New BioAnalysis
+                </div>
+            </div>
+        </div>
+        <button mat-icon-button class="modal-close-button" aria-label="Close dialog" >
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="bioanalysisForm" (ngSubmit)="onSubmit()" >
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>BioAnalysis Name</mat-label>
+                        <input matInput formControlName="analysisName" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>receipt</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label> 
+                            BioAnalysis Type
+                        </mat-label>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>category</mat-icon>
+                        <mat-select formControlName="analysisType" required>
+                            <mat-option [value]="'HEMATOLOGY'">HEMATOLOGY</mat-option>
+                            <mat-option [value]="'CLINICAL_BIOCHEMISTRY'">CLINICAL_BIOCHEMISTRY</mat-option>
+                            <mat-option [value]="'HORMONES'">HORMONES</mat-option>
+                            <mat-option [value]="'IMMUNOLOGY_SEROLOGY'">IMMUNOLOGY_SEROLOGY</mat-option>
+                            <mat-option [value]="'MICROBIOLOGY'">MICROBIOLOGY</mat-option>
+                            <mat-option [value]="'GENETICS'">GENETICS</mat-option>
+                            <mat-option [value]="'CYTOLOGY_HISTOLOGY'">CYTOLOGY_HISTOLOGY</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>BioAnalysis Description</mat-label>
+                        <input matInput formControlName="analysisDesc" type="text" required>
+                        <textarea matInput formControlName="bioAnalysisDescription" required rows="2"></textarea>
+                        <mat-icon class="material-icons-two-tone color-icon" matSuffix>description</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>
+                            BioAnalysis Measurement Unit
+                        </mat-label>
+                       <mat-icon class="material-icons-two-tone color-icon" matSuffix>straighten</mat-icon>
+                        <mat-select formControlName="analysisUnit" required>
+                            <mat-option [value]="'MICROGRAM_PER_LITER'">MICROGRAM_PER_LITER</mat-option>
+                            <mat-option [value]="'MILLIGRAM_PER_DECILITER'">MILLIGRAM_PER_DECILITER</mat-option>
+                            <mat-option [value]="'PERCENT'">PERCENT</mat-option>
+                            <mat-option [value]="'CELLS_PER_MICROLITER'">CELLS_PER_MICROLITER</mat-option>
+                            <mat-option [value]="'MILLIMOLE_PER_LITER'">MILLIMOLE_PER_LITER</mat-option>
+                            <mat-option [value]="'MICROMOLE_PER_LITER'">MICROMOLE_PER_LITER</mat-option>
+                            <mat-option [value]="'GRAMS_PER_DECILITER'">GRAMS_PER_DECILITER</mat-option>
+                            <mat-option [value]="'LITERS'">LITERS</mat-option>
+                            <mat-option [value]="'MILLILITERS'">MILLILITERS</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>BioAnalysis RefValueMin</mat-label>
+                        <input matInput formControlName="analysisValueMin" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>arrow_downward</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>BioAnalysis RefValueMax</mat-label>
+                        <input matInput formControlName="analysisValueMax" type="text" required>
+                        <mat-icon class="material-icons-two-tone color-icon p-3" matSuffix>arrow_upward</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button mat-raised-button color="primary" type="submit" >Save</button>
+                        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
